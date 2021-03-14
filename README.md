@@ -1,0 +1,2 @@
+# EndHunger
+People enjoy buffets, free food items, buy more than they can have and rest of the food is left to be wasted. In modern times people who have food don't value it whereas those who value can’t afford it. It is surprising to know the various benefits we can prevail from the food that is wasted. Therefore we aim at turning the food wasted by people into as many resources as possible. By this we are not only reducing the amount of wastage of resources but we are generating more resources using just that waste.
