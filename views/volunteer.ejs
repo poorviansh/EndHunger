@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  
+  *, *:before, *:after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  /*background: linear-gradient(to right, #ea1d6f 0%, #eb466b 100%);*/
+  background: #ff1493;
+  font-size: 12px;
+}
+
+body, button, input {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.background {
+  display: flex;
+  min-height: 90vh;
+}
+
+.container {
+  /* flex: 0 1 700px; */
+  margin: auto;
+  padding: 10px;
+}
+
+.screen {
+  position: absolute;
+  left: 15%;
+  top: 7%;
+  background: #f2f2f2;
+  border-radius: 35px;
+}
+
+.screen:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .4);
+  z-index: -1;
+}
+
+.screen-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  /*background: #4d4d4f;*/
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.screen-header-left {
+  margin-right: auto;
+}
+
+.screen-header-button {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 3px;
+  border-radius: 18px;
+  background: rgb(184, 152, 152);
+}
+
+.screen-header-button.close {
+  background: #ed1c6f;
+}
+
+.screen-header-button.maximize {
+  background: #e8e925;
+}
+
+.screen-header-button.minimize {
+  background: #74c54f;
+}
+
+.screen-header-right {
+  display: flex;
+}
+
+.screen-header-ellipsis {
+  width: 3px;
+  height: 3px;
+  margin-left: 2px;
+  border-radius: 8px;
+  background: #999;
+}
+
+.screen-body {
+  display: flex;
+}
+
+.screen-body-item {
+  flex: 1;
+  padding: 50px;
+}
+
+.screen-body-item.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-title {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: #ea1d6f;
+  font-size: 26px;
+
+}
+
+.app-title:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 25px;
+  height: 4px;
+  background: #ea1d6f;
+}
+
+.app-contact {
+  margin-top: auto;
+  font-size: 8px;
+  color: #888;
+}
+
+.app-form-group {
+  margin-bottom: 15px;
+}
+
+
+.app-form-group.buttons {
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.app-form-control {
+  width: 100%;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #666;
+  color: rgb(37, 37, 37);
+  font-size: 14px;
+  text-transform: uppercase;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.app-form-control::placeholder {
+  color: rgb(126, 124, 124);
+}
+
+.app-form-control:focus {
+  border-bottom-color: rgb(37, 37, 37);
+}
+
+.app-form-button {
+  background: none;
+  border: none;
+  color: #ea1d6f;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.app-form-button:hover {
+  color: #5e0626;
+}
+
+
+</style>
+<body>
+
+  <div class="container">
+    <%- messages('messages', locals) %>
+    
+    <% if (errors) {%>
+        <% errors.forEach(function(error) { %>
+        <div class="alert alert-danger">
+            <%= error.msg %>
+        </div>
+        <% });%>
+    <% }%>
+</div>
+<div class="background">
+  <div class="container">
+    <div class="screen">
+      <div class="screen-header">
+        <div class="screen-header-left">
+          <div class="screen-header-button close"></div>
+          <div class="screen-header-button maximize"></div>
+          <div class="screen-header-button minimize"></div>
+        </div>
+        <div class="screen-header-right">
+          <div class="screen-header-ellipsis"></div>
+          <div class="screen-header-ellipsis"></div>
+          <div class="screen-header-ellipsis"></div>
+        </div>
+      </div>
+      <div class="screen-body">
+        <div class="screen-body-item left">
+          <div class="app-title">
+            <span>WELCOME Volunteers!!</span>
+            <span>REGISTER AND JOIN FOR THE CAUSE!!
+            </span>
+          </div>
+          <div class="app-contact" style="margin-top:2rem;">EMAIL ID : ngowebsite1234@gmail.com</div>
+        </div>
+        <div class="screen-body-item">
+          <div class="app-form">
+            <% if(user) { %>
+            <form action="/volunteer" method="POST">
+            <div class="app-form-group">
+              <input class="app-form-control" name="name" placeholder="NAME" >
+            </div>
+            <div class="app-form-group">
+              <input class="app-form-control" name="email" placeholder="EMAIL">
+            </div>
+            <div class="app-form-group">
+              <input class="app-form-control" name="phone" placeholder="CONTACT NO">
+            </div>
+            <div class="app-form-group">
+              <input class="app-form-control" name="address" placeholder="Address">
+            </div>
+            <div class="app-form-group">
+              <input class="app-form-control" name="days_available" placeholder="Number of days availabe for help">
+            </div><div class="app-form-group">
+              <input class="app-form-control" name="hours_perday" placeholder="Number of hours available per day">
+            </div>            
+            <div class="app-form-group">
+              <input class="app-form-control" name="add_info" placeholder="Additional Information">
+            </div>   
+            <br>
+            
+            <div class="app-form-group buttons">
+              <button class="app-form-button" type="reset" value="reset">CANCEL</button>
+              <button class="app-form-button" type="submit" value="reset">SEND</button>
+            </div>
+          </form>
+          <% } else { %>
+            <div class="d-flex justify-content-center align-items-center">
+            <a class="nav-link" href="/login" style="color: black;"><button class="button" style=" border-radius: 10px; height: 2rem; color: #fff; border: 0; width: 10rem; background-color: #FF1493">Login to continue</button></a>
+          </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
